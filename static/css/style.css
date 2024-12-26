@@ -1,0 +1,747 @@
+/* 기본적인 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-bottom:400px;
+    background-color: #f4f4f4;
+}
+
+.wrap{
+    margin-top:100px;
+}
+
+header {
+    background-color: #333;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo h1 {
+    font-size:40px;
+    position:absolute;
+    top:1%;
+    left:40%;
+}
+
+
+header .navbar ul {
+    display: flex;
+    list-style-type: none;
+    margin-top:100px;
+    margin-right:300px;
+    padding: 0;
+}
+
+header .navbar li {
+    margin: 0 15px;
+    width:200px;
+    height:40px;
+    text-align:center;
+    line-height:2.5em;;
+}
+
+.navbar li:hover{
+    background-color:#45a049;
+}
+
+header .navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px; /* 글자 크기 약간 크게 */
+    transition: color 0.3s;
+}
+
+header .navbar a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.auth-buttons{
+    position:absolute;
+    top:5%;
+    right:5%;
+}
+
+header .auth-buttons a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 10px;
+    
+}
+
+main {
+    margin-top: 70px; /* Header 높이만큼 여백 */
+    padding: 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+img {
+    max-width: 500px;  /* 최대 너비를 500px로 설정 */
+    width: 100%;  /* 화면 크기에 맞게 너비 조정 */
+    height: auto;  /* 비율에 맞게 높이 자동 조정 */
+    border-radius: 5px;
+    margin-top: 20px;
+    display: block;  /* 이미지를 블록 요소로 만들어서 중앙 정렬 */
+    margin-left: auto;
+    margin-right: auto;  /* 이미지 가운데 정렬 */
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-top: 20px;
+}
+
+
+
+/* 이미지 업로드 */
+
+
+#image-file{
+    position:absolute;
+    top:50%;
+    left:20%;
+}
+
+#image-upload-form > button{
+    position:absolute;
+    left:70%;
+    top:49.5%;
+}
+
+
+#uploaded-image-info p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position:absolute;
+    top:84.5%;
+}
+
+#uploaded-image-info img {
+    position:absolute;
+    left:20%;
+    top:150%;
+    max-width: 60%;  /* 이미지 크기 조정 */
+    margin-right: 20px; /* 이미지와 텍스트 사이 간격 */
+}
+
+#uploaded-image-info pre {
+    position:absolute;
+    left:20%;
+    top:85%;
+    flex: 1; /* 텍스트가 남은 공간을 차지하도록 */
+    word-wrap: break-word; /* 긴 텍스트가 넘치지 않도록 줄바꿈 */
+}
+
+
+.btn {
+    background-color: #00796b;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #004d40;
+}
+
+/* 챗봇 스타일일 */
+
+#send-btn{
+    position:absolute;
+    margin-left:950px;
+ }
+
+
+ .btn-custom {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+}
+
+th {
+    text-align: center;
+}
+
+#chatbot > h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
+
+#chat-box {
+    display: flex;
+    overflow-y:auto;
+    flex-direction: column; /* 세로로 정렬 */
+    justify-content: flex-start; /* 위에서부터 정렬 */
+    align-items: flex-start; /* 기본 왼쪽 정렬 */
+    width: 100%;
+    height:300px;
+    max-width: 800px; /* 최대 너비 */
+    min-height: 630px; /* 최소 높이 */
+    padding: 10px; /* 내부 여백 */
+    margin-bottom:20px !important;
+    border: 5px solid #ddd !important; /* 테두리 추가 및 우선순위 증가 */
+    border-radius: 10px !important; /* 테두리 둥글게 */
+    padding: 10px !important; /* 내부 여백 추가 */
+    overflow-y: auto; /* 세로 스크롤 */
+    margin: 0 auto; /* 가운데 정렬 */
+    background-color:#c5f9e8;
+}
+
+
+
+.user, .bot {
+    background-color: #f0f8ff; /* 배경색 */
+    border-radius: 10px; /* 둥근 테두리 */
+    padding: 10px; /* 내부 여백 */
+    margin: 10px 0; /* 상하 간격 */
+    max-width: 70%; /* 최대 너비 */
+    word-wrap: break-word; /* 긴 단어는 줄바꿈 처리 */
+    width: auto; /* 너비를 자동으로 조정 */
+}
+
+.user {
+    background-color: #f0f8ff; /* 사용자 메시지 색 */
+    align-self: flex-start; /* 왼쪽 정렬 */
+}
+
+.bot {
+    background-color: #e6ffe6; /* 봇 메시지 색 */
+    align-self: flex-end; /* 오른쪽 정렬 */
+}
+
+.form-control {
+    position:absolute;
+    border: 5px solid rgb(197, 197, 197);
+    margin-bottom: 20px;
+    width:43%;
+    left:23%;
+    margin-top:10px;
+    margin-right:-2000px;
+    border-radius:10px;
+    padding:10px;
+}
+
+.mt-2{
+    position:absolute;
+    background-color:#4CAF50;
+    padding:10px;
+    color:white;
+    border-radius:10px;
+    border-color:white;
+    font-size:15px;
+    left:8%;
+    margin-top:10px;
+}
+
+.mt-2:hover{
+    color:aqua;
+    display:block;
+    background-color:#ea86dd;
+}
+
+
+/* 하이라이트 */
+
+.highright > h1{
+    text-align:center;
+}
+
+.upload-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.file-input {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.btn {
+    background-color: #00796b;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #004d40;
+}
+
+/* 결과 영역 */
+.result-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* 카드 스타일 */
+.result-card, .image-card {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.result-card h2, .image-card h2 {
+    font-size: 1.8rem;
+    color: #00796b;
+}
+
+pre {
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #333;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* 다운로드 버튼 */
+.download-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #00796b;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #004d40;
+}
+
+.download-section h2{
+    position:absolute;
+    margin-left:-330px;
+    margin-top:50px;
+}
+
+.download-section a{
+    position:absolute;
+    margin-left:110px;
+    margin-top:45px;
+}
+
+.image-card img{
+    width:100%;
+}
+
+
+/* 캘린더 */
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between; /* Buttons on opposite ends */
+    margin-bottom: 50px; /* Reduced margin to place buttons closer to calendar */
+    width: 700px; /* Same width as the calendar */
+    margin: 0 auto; /* Center buttons above calendar */
+}
+
+.navbar ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+.auth-buttons {
+    margin-top: 10px;
+}
+
+.auth-buttons a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.auth-buttons a:hover {
+    text-decoration: underline;
+}
+
+/* 캘린더 스타일 */
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+.calendar h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.calendar h2 {
+    font-size: 28px;
+    margin: 20px 0;
+    color: #00796b;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between; /* Buttons on opposite ends */
+    margin-bottom: 30px; /* Reduced margin to place buttons closer to calendar */
+    width: 700px; /* Same width as the calendar */
+    margin: 0 auto; /* Center buttons above calendar */
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #00796b; /* Modern, fresh green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #004d40;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto repeat(6, 1fr); /* 최대 6주 */
+    gap: 1px;
+    background-color: #bdc3c7;
+    margin: 20px auto;
+    max-width: 700px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 그리드에 그림자 추가 */
+}
+
+
+.calendar-grid div {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* 둥근 모서리 */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* 부드러운 애니메이션 추가 */
+}
+
+.calendar-grid div:hover {
+    background-color: #f0f0f0; /* 마우스 hover 시 배경 색상 변경 */
+    transform: scale(1.05); /* 클릭할 수 있다는 피드백 */
+}
+
+.red-day {
+    color: #e74c3c; /* 주말을 빨간색으로 강조 */
+    font-weight: bold;
+}
+
+/* 클릭 가능한 날짜에 스타일 */
+
+
+
+.clickable-day {
+    position: relative;  /* 위치를 상대적으로 설정하여 자식 요소를 절대 위치로 배치 */
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* 날짜와 이벤트를 세로로 배치 */
+    align-items: center; /* 가운데 정렬 */
+    height: 100px;  /* 일정 표시를 위한 충분한 공간 */
+    justify-content: flex-start; /* 날짜를 위쪽에 배치 */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.clickable-day div{
+    border:0;
+}
+
+.clickable-day:hover {
+    background-color: #00796b; /* 클릭 시 색상 변화 */
+    color: #d297ea;
+    transform: scale(1.05); /* 클릭 피드백 효과 */
+}
+
+/* 날짜 숫자 스타일 */
+.clickable-day div:first-child {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px; /* 숫자와 일정 사이에 간격을 줌 */
+}
+
+
+.clickable-day:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+/* 모달 스타일 */
+.modal {
+    display: none; /* 기본적으로 숨겨진 상태 */
+    position: fixed;
+    z-index: 1; /* 가장 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0); /* 배경 색상 */
+    background-color: rgba(0, 0, 0, 0.4); /* 배경 색상 투명도 */
+    padding-top: 60px;
+}
+
+.tn{
+    border:1px solid black;
+    width:100px;
+}
+
+/* 모달 내용 */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-actions {
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.modal-actions button:hover {
+    background-color: #45a049;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+/* 미디어 쿼리 - 모바일 대응 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .upload-form {
+        width: 90%;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+}
+
+.day{
+    margin-top:-10px;
+}
+
+/* 일정 내용 */
+.event {
+    background-color: #ffffff;
+    font-size: 12px;  /* 적당한 크기의 글자 */
+    color: #00796b;  /* 파란색으로 강조 */
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 3px;
+    word-wrap: break-word;  /* 길어진 일정 내용은 줄바꿈 */
+    padding:1px 1px;
+    max-width: 80%; /* 일정이 너무 길어지지 않도록 제한 */
+    position: relative; /* 수정 버튼 위치를 절대적으로 배치 */
+}
+
+
+.calendar-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.edit-btn {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    border-radius: 3px;
+}
+
+.edit-btn:hover {
+    background-color: #f57c00;
+}
+
+/* 주말 및 공휴일 강조 */
+.red-text {
+    color: red;  /* 빨간색으로 강조 */
+}
+
+/* 주말 배경 색상 */
+.weekend {
+    background-color: #f4f4f4; /* 주말 배경색 */
+}
+
+/* 공휴일 배경 색상 */
+.holiday {
+    background-color: #ffeb3b; /* 공휴일 배경색 */
+    color: red;
+    font-weight: bold;
+}
+
+
+
+/* top 메뉴 */
+
+.top{
+   position:fixed;
+   margin-top:200px;
+   background-color:#cf1ed2;
+   width:50px;
+   height:50px;
+   border-radius:25px;
+   text-align:center;
+   line-height:3em;
+   right:2%;
+   bottom:5%;
+   cursor:pointer;
+   
+}
+
+.top a{
+    text-decoration:none;
+    color:white;
+    width:50px;
+    height:50px;
+    border-radius:25px;
+}
+
+
+
+.top a:hover{
+    display:block;
+    color:#8203b8;
+    background-color:#d9c7de;
+}

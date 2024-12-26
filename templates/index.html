@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI- NaviDoctor</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>AI- NaviDoctor</h1>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ url_for('upload_image') }}" class="{{ 'active' if page == 'upload' else '' }}">이미지 업로드</a></li>
+                <li><a href="{{ url_for('highlight') }}" class="{{ 'active' if page == 'highlight' else '' }}">하이라이트</a></li>
+                <li><a href="{{ url_for('chatbot') }}" class="{{ 'active' if page == 'chatbot' else '' }}">챗봇</a></li>
+                <li><a href="{{ url_for('calendar_view') }}" class="{{ 'active' if page == 'calendar' else '' }}">캘린더</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            {% if 'username' in session %}
+                <a href="{{ url_for('dashboard') }}">대시보드</a> | 
+                <a href="{{ url_for('logout') }}">로그아웃</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">로그인</a> | 
+                <a href="{{ url_for('signup') }}">회원가입</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+
+        
+            {% if page == 'signup' %}
+                <h2>회원가입</h2>
+                <form method="POST">
+                    <input type="text" name="username" placeholder="아이디" required>
+                    <input type="password" name="password" placeholder="비밀번호" required>
+                    <input type="email" name="email" placeholder="이메일" required>
+                    <input type="text" name="phone" placeholder="전화번호" required>
+                    <input type="text" name="full_name" placeholder="이름" required>
+                    <button type="submit">회원가입</button>
+                </form>
+            {% elif page == 'login' %}
+                <h2>로그인</h2>
+                <form method="POST">
+                    <input type="text" name="username" placeholder="아이디" required>
+                    <input type="password" name="password" placeholder="비밀번호" required>
+                    <button type="submit">로그인</button>
+                </form>
+            {% elif page == 'dashboard' %}
+                <h2>대시보드</h2>
+                <p>{{ session['username'] }}님, 환영합니다!</p>
+                <form action="{{ url_for('delete_account') }}" method="POST">
+                    <button type="submit" style="background-color: red; color: white;">계정 삭제</button>
+                </form>
+            {% elif page == 'upload' %}
+                <h2>이미지 업로드</h2>
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="image/*" required>
+                    <button type="submit">업로드</button>
+                </form>
+            
+                {% if image_url %}
+                    <h3>업로드된 이미지:</h3>
+                    <img src="{{ image_url }}" alt="Uploaded Image" width="300">
+                    <h3>이미지에서 추출된 텍스트:</h3>
+            
+                    <!-- 텍스트 문단 처리 -->
+                    <div class="extracted-text">
+                        <pre>
+                            {% set paragraphs = extracted_text %}
+                            <!-- 첫 번째 문단 띄어짐 없이 출력 -->
+                            <div>{{ paragraphs[0] }}</div>
+                            <!-- 나머지 문단은 두 줄 간격으로 출력 -->
+                            {% for paragraph in paragraphs[1:] %}
+                                <br><br><div>{{ paragraph }}</div>
+                            {% endfor %}
+                        </pre>
+                    </div>
+                {% endif %}
+            {% elif page == 'highlight' %}
+                <div class="highright">
+                    <h1>하이라이트</h1>
+                
+                    <section class="upload-section">
+                        <form action="/highlight" method="POST" enctype="multipart/form-data" class="upload-form">
+                            <input type="file" name="file" class="file-input" accept="image/*" id="fileInput" required>
+                            <button type="submit" class="btn">Upload Image</button>
+                        </form>
+                    </section>
+
+                    {% if extracted_text %}
+                    <section class="result-section">
+                        <div class="result-card">
+                            <h2>Extracted Text</h2>
+                            <pre>{{ extracted_text }}</pre>
+                        </div>
+
+                        <div class="image-card">
+                            <h2>Highlighted Image</h2>
+                            <img src="{{ highlighted_image_path }}" alt="Highlighted Image">
+                        </div>
+
+                        <div class="download-section">
+                            <h2>엑셀파일 다운로드</h2>
+                            <a href="{{ excel_file_path }}" class="btn download-btn">Download Excel</a>
+                        </div>
+                    </section>
+                    {% endif %}
+                </div>    
+                    
+            {% elif page == 'chatbot' %}
+                <h2>챗봇</h2>
+                <div id="chat-box" class="border p-3" style="max-height: 400px; overflow-y: auto;"></div>
+                <input type="text" id="user-input" class="form-control" placeholder="질문을 입력하세요">
+                <button id="send-btn" class="btn btn-primary mt-2">응답하기</button>
+            {% elif page == 'calendar' %}
+                <h1>캘린더</h1>
+                <h2>{{ year }}년 {{ month }}월</h2>
+                <div class="nav-buttons">
+                    <!-- 이전 버튼 -->
+                    <button class="btn" id="prev" data-year="{{ year }}" data-month="{{ month }}" data-direction="prev">&lt;&lt; 이전</button>
+                    
+                    <!-- 다음 버튼 -->
+                    <button class="btn" id="next" data-year="{{ year }}" data-month="{{ month }}" data-direction="next">다음 &gt;&gt;</button>
+                </div>
+
+                <div class="calendar-grid">
+                    <div class="red-day"><strong>일</strong></div>
+                    <div><strong>월</strong></div>
+                    <div><strong>화</strong></div>
+                    <div><strong>수</strong></div>
+                    <div><strong>목</strong></div>
+                    <div><strong>금</strong></div>
+                    <div class="red-day"><strong>토</strong></div>
+
+                    {% for week in days %}
+                        {% for day in week %}
+                            {% if day %}
+                                <div class="  {% if day.is_weekend or day.is_holiday %}red-text{% endif %}
+                                {% if day.is_weekend %}weekend{% endif %}
+                                {% if day.is_holiday %}holiday{% endif %}
+                                clickable-day" data-date="{{ year }}-{{ '%02d' % month }}-{{ '%02d' % day.day }}">
+                                    <div class="day">{{ day.day }}</div>
+                                    {% if day.event %}
+                                        <div class="event">{{ day.event }}</div>
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                <div></div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- 모달 -->
+            <div id="eventModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-btn" id="closeModalBtn">&times;</span>
+                    <h2>일정 추가/수정</h2>
+                    <form id="eventForm">
+                        <input type="hidden" id="eventDate" name="date" />
+                        <input type="hidden" id="eventId" name="id" />  <!-- 수정할 일정의 ID -->
+            
+                        <label for="eventTitle">일정 제목:</label>
+                        <input type="text" id="eventTitle" name="title" required />
+                        
+                        <!-- 수정, 삭제, 저장 버튼을 가로로 정렬 -->
+                        <div class="modal-actions">
+                            <button type="submit" id="saveEventBtn">저장</button>
+                            <button type="button"  class="tn" id="updateEventBtn" style="display: none;">수정</button>
+                            <button type="button"  class="tn" id="deleteEventBtn" style="display: none;">삭제</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                
+            {% else %}
+                <h1>웹 애플리케이션에 오신 것을 환영합니다!</h1>
+                <p>위 메뉴를 선택하세요.</p>
+            {% endif %}
+        
+     </div>
+     <div class="top"><a href="">top</a></div>
+    </main>
+
+    <!-- 모달 -->
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
