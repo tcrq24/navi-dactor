@@ -51,7 +51,7 @@ def allowed_file(filename):
 # 기본 페이지
 @app.route('/')
 def index():
-    return render_template('index.html', page='home')
+    return send_file('index.html', page='home')
 
 # 회원가입
 @app.route('/signup', methods=['POST', 'GET'])
@@ -73,7 +73,7 @@ def signup():
             }
             flash('회원가입이 완료되었습니다!', 'success')
             return redirect(url_for('login'))
-    return render_template('index.html', page='signup')
+    return send_file('index.html', page='signup')
 
 # 로그인
 @app.route('/login', methods=['POST', 'GET'])
@@ -87,7 +87,7 @@ def login():
             session['username'] = username
             flash('로그인 성공!', 'success')
             return redirect(url_for('dashboard'))
-    return render_template('index.html', page='login')
+    return send_file('index.html', page='login')
 
 # 로그아웃
 @app.route('/logout')
@@ -101,7 +101,7 @@ def logout():
 def dashboard():
     if 'username' not in session:
         return redirect(url_for('login'))
-    return render_template('index.html', page='dashboard')
+    return send_file('index.html', page='dashboard')
 
 
 @app.route('/delete_account', methods=['POST'])
@@ -178,7 +178,7 @@ def upload_image():
             # 템플릿에 이미지와 텍스트 전달
             return render_template('index.html', page='upload', image_url=filename, extracted_text=extracted_text)
     
-    return render_template('index.html', page='upload')
+    return send_file('index.html', page='upload')
 
 
 def generate_random_filename(extension):
@@ -359,7 +359,7 @@ def highlight():
 
             extracted_text = '\n'.join(text_data)  # 추출된 텍스트를 하나의 문자열로 합침
 
-    return render_template('index.html', 
+    return send_file('index.html', 
                            page='highlight', 
                            extracted_text=extracted_text,
                            highlighted_image_path=highlighted_image_path,
@@ -603,7 +603,7 @@ def calendar_view():
     # 달력 생성
     days = generate_calendar(year, month)
 
-    return render_template('index.html', page='calendar', year=year, month=month, days=days, events=events)
+    return send_file('index.html', page='calendar', year=year, month=month, days=days, events=events)
 
 @app.route('/save_event', methods=['POST'])
 def save_event():
