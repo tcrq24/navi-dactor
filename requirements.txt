@@ -13,3 +13,4 @@ pytesseract
 requests
 sympy
 opencv-python
+holidays
