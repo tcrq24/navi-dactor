@@ -12,4 +12,4 @@ Pillow
 pytesseract
 requests
 sympy
-cv2
+opencv-python
