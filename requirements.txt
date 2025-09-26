@@ -10,3 +10,4 @@ gunicorn
 flask_jwt_extended
 Pillow
 pytesseract
+requests
