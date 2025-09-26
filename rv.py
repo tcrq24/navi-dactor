@@ -21,6 +21,7 @@ import uuid
 
 
 
+
 api_key = 'your_openweathermap_api_key'  # OpenWeatherMap API 키를 여기에 입력하세요.
 
 app = Flask(__name__)
@@ -29,7 +30,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Tesseract 경로 설정 (Windows에서만 필요)
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'Tesseract-OCR\tesseract.exe'
 
 
 
